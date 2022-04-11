@@ -50,7 +50,7 @@ module.exports = hisoka = async (hisoka, m, chatUpdate, store) => {
         const quoted = m.quoted ? m.quoted : m
         const mime = (quoted.msg || quoted).mimetype || ''
 	    const isMedia = /image|video|sticker|audio/.test(mime)
-	
+
         // Group
         const groupMetadata = m.isGroup ? await hisoka.groupMetadata(m.chat).catch(e => {}) : ''
         const groupName = m.isGroup ? groupMetadata.subject : ''
@@ -60,8 +60,8 @@ module.exports = hisoka = async (hisoka, m, chatUpdate, store) => {
     	const isBotAdmins = m.isGroup ? groupAdmins.includes(botNumber) : false
     	const isAdmins = m.isGroup ? groupAdmins.includes(m.sender) : false
     	const isPremium = isCreator || global.premium.map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net').includes(m.sender) || false
-	
-	
+
+
 	try {
             let isNumber = x => typeof x === 'number' && !isNaN(x)
             let limitUser = isPremium ? global.limitawal.premium : global.limitawal.free
@@ -76,7 +76,7 @@ module.exports = hisoka = async (hisoka, m, chatUpdate, store) => {
                 afkReason: '',
                 limit: limitUser,
             }
-    
+
             let chats = global.db.data.chats[m.chat]
             if (typeof chats !== 'object') global.db.data.chats[m.chat] = {}
             if (chats) {
@@ -86,7 +86,7 @@ module.exports = hisoka = async (hisoka, m, chatUpdate, store) => {
                 mute: false,
                 antilink: false,
             }
-		
+
 	    let setting = global.db.data.settings[botNumber]
             if (typeof setting !== 'object') global.db.data.settings[botNumber] = {}
 	    if (setting) {
@@ -96,11 +96,11 @@ module.exports = hisoka = async (hisoka, m, chatUpdate, store) => {
 		status: 0,
 		autobio: false,
 	    }
-	    
+
         } catch (err) {
             console.error(err)
         }
-	    
+
         // Public & Self
         if (!hisoka.public) {
             if (!m.key.fromMe) return
@@ -111,7 +111,7 @@ module.exports = hisoka = async (hisoka, m, chatUpdate, store) => {
             hisoka.sendReadReceipt(m.chat, m.sender, [m.key.id])
             console.log(chalk.black(chalk.bgWhite('[ PESAN ]')), chalk.black(chalk.bgGreen(new Date)), chalk.black(chalk.bgBlue(budy || m.mtype)) + '\n' + chalk.magenta('=> Dari'), chalk.green(pushname), chalk.yellow(m.sender) + '\n' + chalk.blueBright('=> Di'), chalk.green(m.isGroup ? pushname : 'Private Chat', m.chat))
         }
-	
+
 	// reset limit every 12 hours
         let cron = require('node-cron')
         cron.schedule('00 12 * * *', () => {
@@ -123,7 +123,7 @@ module.exports = hisoka = async (hisoka, m, chatUpdate, store) => {
             scheduled: true,
             timezone: "Asia/Jakarta"
         })
-        
+
 	// auto set bio
 	if (db.data.settings[botNumber].autobio) {
 	    let setting = global.db.data.settings[botNumber]
@@ -133,7 +133,7 @@ module.exports = hisoka = async (hisoka, m, chatUpdate, store) => {
 		setting.status = new Date() * 1
 	    }
 	}
-	    
+
 	  // Anti Link
         if (db.data.chats[m.chat].antilink) {
         if (budy.match(`chat.whatsapp.com`)) {
@@ -148,7 +148,7 @@ module.exports = hisoka = async (hisoka, m, chatUpdate, store) => {
         hisoka.groupParticipantsUpdate(m.chat, [m.sender], 'remove')
         }
         }
-        
+
       // Mute Chat
       if (db.data.chats[m.chat].mute && !isAdmins && !isCreator) {
       return
@@ -173,7 +173,7 @@ module.exports = hisoka = async (hisoka, m, chatUpdate, store) => {
         }
         hisoka.ev.emit('messages.upsert', msg)
         }
-	    
+
 	if (('family100'+m.chat in _family100) && isCmd) {
             kuis = true
             let room = _family100['family100'+m.chat]
@@ -260,7 +260,7 @@ ${Array.from(room.jawaban, (jawaban, index) => {
                 delete tebaklirik[m.sender.split('@')[0]]
             } else m.reply('*Jawaban Salah!*')
         }
-	    
+
 	if (tebaktebakan.hasOwnProperty(m.sender.split('@')[0]) && isCmd) {
             kuis = true
             jawaban = tebaktebakan[m.sender.split('@')[0]]
@@ -269,7 +269,7 @@ ${Array.from(room.jawaban, (jawaban, index) => {
                 delete tebaktebakan[m.sender.split('@')[0]]
             } else m.reply('*Jawaban Salah!*')
         }
-        
+
         //TicTacToe
 	    this.game = this.game ? this.game : {}
 	    let room = Object.values(this.game).find(room => room.id && room.game && room.state && room.id.startsWith('tictactoe') && [room.game.playerX, room.game.playerO].includes(m.sender) && room.state == 'PLAYING')
@@ -353,7 +353,7 @@ Ketik *nyerah* untuk menyerah dan mengakui kekalahan`
 	    //delete roof[roof.id].waktu
 	    hisoka.sendText(m.chat, `Suit telah dikirimkan ke chat
 
-@${roof.p.split`@`[0]} dan 
+@${roof.p.split`@`[0]} dan
 @${roof.p2.split`@`[0]}
 
 Silahkan pilih suit di chat masing"
@@ -407,7 +407,7 @@ klik https://wa.me/${botNumber.split`@`[0]}`, m, { mentions: [roof.p, roof.p2] }
 	    delete this.suit[roof.id]
 	    }
 	    }
-	    
+
 	    let mentionUser = [...new Set([...(m.mentionedJid || []), ...(m.quoted ? [m.quoted.sender] : [])])]
 	    for (let jid of mentionUser) {
             let user = global.db.data.users[jid]
@@ -431,7 +431,7 @@ Selama ${clockString(new Date - user.afkTime)}
             user.afkTime = -1
             user.afkReason = ''
         }
-	    
+
         switch(command) {
 	    case 'afk': {
                 let user = global.db.data.users[m.sender]
@@ -439,7 +439,7 @@ Selama ${clockString(new Date - user.afkTime)}
                 user.afkReason = text
                 m.reply(`${m.pushName} Telah Afk${text ? ': ' + text : ''}`)
             }
-            break	
+            break
         case 'ttc': case 'ttt': case 'tictactoe': {
             let TicTacToe = require("./lib/tictactoe")
             this.game = this.game ? this.game : {}
@@ -725,7 +725,7 @@ Silahkan @${m.mentionedJid[0].split`@`[0]} untuk ketik terima/tolak`
                 }
                 hisoka.sendMessage(m.chat, reactionMessage)
             }
-            break  
+            break
             case 'join': {
                 if (!isCreator) throw mess.owner
                 if (!text) throw 'Masukkan Link Group!'
@@ -834,7 +834,7 @@ Silahkan @${m.mentionedJid[0].split`@`[0]} untuk ketik terima/tolak`
                 if (!isBotAdmins) throw mess.botAdmin
                 if (!isAdmins) throw mess.admin
 let teks = `══✪〘 *👥 Tag All* 〙✪══
- 
+
  ➲ *Pesan : ${q ? q : 'kosong'}*\n\n`
                 for (let mem of participants) {
                 teks += `⭔ @${mem.id.split('@')[0]}\n`
@@ -876,17 +876,17 @@ let teks = `══✪〘 *👥 Tag All* 〙✪══
 *Alasan:* ${vote[m.chat][0]}
 
 ┌〔 UPVOTE 〕
-│ 
+│
 ├ Total: ${vote[m.chat][1].length}
 │
-│ 
+│
 └────
 
 ┌〔 DEVOTE 〕
-│ 
+│
 ├ Total: ${vote[m.chat][2].length}
 │
-│ 
+│
 └────
 
 *${prefix}hapusvote* - untuk menghapus vote`
@@ -917,17 +917,17 @@ let buttonsVote = [
 *Alasan:* ${vote[m.chat][0]}
 
 ┌〔 UPVOTE 〕
-│ 
+│
 ├ Total: ${vote[m.chat][1].length}
 ${vote[m.chat][1].map((v, i) => `├ ${i + 1}. @${v.split`@`[0]}`).join('\n')}
-│ 
+│
 └────
 
 ┌〔 DEVOTE 〕
-│ 
+│
 ├ Total: ${vote[m.chat][2].length}
 ${vote[m.chat][2].map((v, i) => `├ ${i + 1}. @${v.split`@`[0]}`).join('\n')}
-│ 
+│
 └────
 
 *${prefix}hapusvote* - untuk menghapus vote`
@@ -959,17 +959,17 @@ ${vote[m.chat][2].map((v, i) => `├ ${i + 1}. @${v.split`@`[0]}`).join('\n')}
 *Alasan:* ${vote[m.chat][0]}
 
 ┌〔 UPVOTE 〕
-│ 
+│
 ├ Total: ${vote[m.chat][1].length}
 ${vote[m.chat][1].map((v, i) => `├ ${i + 1}. @${v.split`@`[0]}`).join('\n')}
-│ 
+│
 └────
 
 ┌〔 DEVOTE 〕
-│ 
+│
 ├ Total: ${vote[m.chat][2].length}
 ${vote[m.chat][2].map((v, i) => `├ ${i + 1}. @${v.split`@`[0]}`).join('\n')}
-│ 
+│
 └────
 
 *${prefix}hapusvote* - untuk menghapus vote`
@@ -988,7 +988,7 @@ ${vote[m.chat][2].map((v, i) => `├ ${i + 1}. @${v.split`@`[0]}`).join('\n')}
             hisoka.sendMessage(m.chat, buttonMessageDevote)
 	}
             break
-                 
+
 case 'cekvote':
 if (!m.isGroup) throw mess.group
 if (!(m.chat in vote)) throw `_*tidak ada voting digrup ini!*_\n\n*${prefix}vote* - untuk memulai vote`
@@ -997,17 +997,17 @@ teks_vote = `*「 VOTE 」*
 *Alasan:* ${vote[m.chat][0]}
 
 ┌〔 UPVOTE 〕
-│ 
+│
 ├ Total: ${upvote.length}
 ${vote[m.chat][1].map((v, i) => `├ ${i + 1}. @${v.split`@`[0]}`).join('\n')}
-│ 
+│
 └────
 
 ┌〔 DEVOTE 〕
-│ 
+│
 ├ Total: ${devote.length}
 ${vote[m.chat][2].map((v, i) => `├ ${i + 1}. @${v.split`@`[0]}`).join('\n')}
-│ 
+│
 └────
 
 *${prefix}hapusvote* - untuk menghapus vote
@@ -1155,7 +1155,7 @@ break
                                 quickReplyButton: {
                                     displayText: 'Contact Owner',
                                     id: 'owner'
-                                }  
+                                }
                             }, {
                                 quickReplyButton: {
                                     displayText: 'Script',
@@ -1194,7 +1194,7 @@ break
                                 quickReplyButton: {
                                     displayText: 'Contact Owner',
                                     id: 'owner'
-                                }  
+                                }
                             }, {
                                 quickReplyButton: {
                                     displayText: 'Script',
@@ -1397,7 +1397,7 @@ break
 	      size: "regular",
 	      type: "auto",
 	      scale: "100%",
-	      outputFile 
+	      outputFile
 	    }).then(async result => {
 	    hisoka.sendMessage(m.chat, {image: fs.readFileSync(outputFile), caption: mess.success}, { quoted : m })
 	    await fs.unlinkSync(localFile)
@@ -1426,7 +1426,7 @@ break
                 teks += `⭔ *Title* : ${g.title}\n`
                 teks += `⭔ *Description* : ${g.snippet}\n`
                 teks += `⭔ *Link* : ${g.link}\n\n────────────────────────\n\n`
-                } 
+                }
                 m.reply(teks)
                 })
                 }
@@ -1897,7 +1897,7 @@ break
                 let birth = [date.getFullYear(), date.getMonth() + 1, date.getDate()]
 
                 let zodiac = await getZodiac(birth[1], birth[2])
-                
+
                 let anu = await primbon.zodiak(zodiac)
                 if (anu.status == false) return m.reply(anu.message)
                 hisoka.sendText(m.chat, `⭔ *Zodiak :* ${anu.message.zodiak}\n⭔ *Nomor :* ${anu.message.nomor_keberuntungan}\n⭔ *Aroma :* ${anu.message.aroma_keberuntungan}\n⭔ *Planet :* ${anu.message.planet_yang_mengitari}\n⭔ *Bunga :* ${anu.message.bunga_keberuntungan}\n⭔ *Warna :* ${anu.message.warna_keberuntungan}\n⭔ *Batu :* ${anu.message.batu_keberuntungan}\n⭔ *Elemen :* ${anu.message.elemen_keberuntungan}\n⭔ *Pasangan Zodiak :* ${anu.message.pasangan_zodiak}\n⭔ *Catatan :* ${anu.message.catatan}`, m)
@@ -2032,7 +2032,7 @@ break
 		case 'igeh': case 'instagram2': case 'ig2': case 'igdl2': {
                 if (!text) throw 'Masukkan Query Link!'
                 m.reply(mess.wait)
-                
+
                 let anu = await fetchJson(api('zenz', '/downloader/instagram2', { url:text }, 'apikey'))
                 hisoka.sendMessage(m.chat, { video: { url: anu.data[0] } }, { quoted: m })
             }
@@ -2281,7 +2281,7 @@ ${id}`)
             case 'delcmd': {
                 let hash = m.quoted.fileSha256.toString('base64')
                 if (!hash) throw `Tidak ada hash`
-                if (global.db.data.sticker[hash] && global.db.data.sticker[hash].locked) throw 'You have no permission to delete this sticker command'              
+                if (global.db.data.sticker[hash] && global.db.data.sticker[hash].locked) throw 'You have no permission to delete this sticker command'
                 delete global.db.data.sticker[hash]
                 m.reply(`Done!`)
             }
@@ -2312,7 +2312,7 @@ ${Object.entries(global.db.data.sticker).map(([key, value], index) => `${index +
                 if (text.toLowerCase() in msgs) throw `'${text}' telah terdaftar di list pesan`
                 msgs[text.toLowerCase()] = quoted.fakeObj
 m.reply(`Berhasil menambahkan pesan di list pesan sebagai '${text}'
-    
+
 Akses dengan ${prefix}getmsg ${text}
 
 Lihat list Pesan Dengan ${prefix}listmsg`)
@@ -2560,7 +2560,7 @@ ${cpus.map((cpu, i) => `${i + 1}. ${cpu.model.trim()} (${cpu.speed} MHZ)\n${Obje
 │
 └───────⭓
 
-┌──⭓ *Downloader Menu*
+┌──⭓ *Menú del descargador*
 │
 │⭔ ${prefix}tiktoknowm [url]
 │⭔ ${prefix}tiktokwm [url]
@@ -2670,7 +2670,7 @@ ${cpus.map((cpu, i) => `${i + 1}. ${cpu.model.trim()} (${cpu.speed} MHZ)\n${Obje
 │
 └───────⭓
 
-┌──⭓ *Ephoto Menu*
+┌──⭓ *Menú de foto electrónica*
 │
 │⭔ ${prefix}ffcover
 │⭔ ${prefix}crossfire
@@ -2793,15 +2793,6 @@ ${cpus.map((cpu, i) => `${i + 1}. ${cpu.model.trim()} (${cpu.speed} MHZ)\n${Obje
 │
 └───────⭓
 
-┌──⭓ *Islamic Menu*
-│
-│⭔ ${prefix}iqra
-│⭔ ${prefix}hadist
-│⭔ ${prefix}alquran
-│⭔ ${prefix}juzamma
-│⭔ ${prefix}tafsirsurah
-│
-└───────⭓
 
 ┌──⭓ *Voice Changer*
 │
@@ -2852,7 +2843,7 @@ ${cpus.map((cpu, i) => `${i + 1}. ${cpu.model.trim()} (${cpu.speed} MHZ)\n${Obje
                                 quickReplyButton: {
                                     displayText: 'Contact Owner',
                                     id: 'owner'
-                                }  
+                                }
                             }, {
                                 quickReplyButton: {
                                     displayText: 'Script',
@@ -2898,7 +2889,7 @@ ${cpus.map((cpu, i) => `${i + 1}. ${cpu.model.trim()} (${cpu.speed} MHZ)\n${Obje
                         if (stdout) return m.reply(stdout)
                     })
                 }
-			
+
 		if (m.chat.endsWith('@s.whatsapp.net') && isCmd) {
                     this.anonymous = this.anonymous ? this.anonymous : {}
                     let room = Object.values(this.anonymous).find(room => [room.a, room.b].includes(m.sender) && room.state === 'CHATTING')
@@ -2917,7 +2908,7 @@ ${cpus.map((cpu, i) => `${i + 1}. ${cpu.model.trim()} (${cpu.speed} MHZ)\n${Obje
                     }
                     return !0
                 }
-			
+
 		if (isCmd && budy.toLowerCase() != undefined) {
 		    if (m.chat.endsWith('broadcast')) return
 		    if (m.isBaileys) return
@@ -2926,7 +2917,7 @@ ${cpus.map((cpu, i) => `${i + 1}. ${cpu.model.trim()} (${cpu.speed} MHZ)\n${Obje
 		    hisoka.copyNForward(m.chat, msgs[budy.toLowerCase()], true)
 		}
         }
-        
+
 
     } catch (err) {
         m.reply(util.format(err))

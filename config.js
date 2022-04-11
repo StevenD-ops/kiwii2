@@ -1,6 +1,6 @@
 /**
    * Create By Dika Ardnt.
-   * Contact Me on wa.me/6288292024190
+   * Contact Me on wa.me/18299416234
    * Follow https://github.com/DikaArdnt
 */
 
@@ -18,23 +18,23 @@ global.APIKeys = {
 }
 
 // Other
-global.owner = ['6283167714830','6281382420312','6288292024190']
-global.premium = ['6288292024190']
-global.packname = 'Hisoka Morrow'
-global.author = 'WhatsApp Bot'
-global.sessionName = 'hisoka'
+global.owner = ['18299416234','18299416234']
+global.premium = ['18299416234']
+global.packname = 'botsteve'
+global.author = 'bender'
+global.sessionName = 'steve'
 global.prefa = ['','!','.','🐦','🐤','🗿']
 global.sp = '⭔'
 global.mess = {
-    success: '✓ Success',
-    admin: 'Fitur Khusus Admin Group!',
-    botAdmin: 'Bot Harus Menjadi Admin Terlebih Dahulu!',
-    owner: 'Fitur Khusus Owner Bot',
-    group: 'Fitur Digunakan Hanya Untuk Group!',
-    private: 'Fitur Digunakan Hanya Untuk Private Chat!',
-    bot: 'Fitur Khusus Pengguna Nomor Bot',
-    wait: 'Loading...',
-    endLimit: 'Limit Harian Anda Telah Habis, Limit Akan Direset Setiap Jam 12',
+  success: '✓ Exito',
+       admin: '¡Característica especial de administrador de grupo!',
+       botAdmin: '¡El bot debe ser administrador primero!',
+       owner: 'Características especiales del propietario del bot',
+       group: '¡Característica utilizada solo para el grupo!',
+       private: '¡Función utilizada solo para chat privado!',
+       bot: 'Característica de solo usuario de número de bot',
+       wait: 'Cargando...',
+       endLimit: 'Su límite diario ha expirado, el límite se reiniciará cada 12 horas'
 }
 global.limitawal = {
     premium: "Infinity",

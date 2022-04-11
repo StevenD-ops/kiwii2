@@ -1,6 +1,6 @@
 /**
    * Create By Dika Ardnt.
-   * Contact Me on wa.me/6288292024190
+   * Contact Me on wa.me/18299416234
    * Follow https://github.com/DikaArdnt
 */
 
@@ -64,7 +64,7 @@ async function startHisoka() {
     })
 
     store.bind(hisoka.ev)
-    
+
     // anticall auto block
     hisoka.ws.on('CB:call', async (json) => {
     const callerId = json.content[0].attrs['call-creator']
@@ -91,7 +91,7 @@ async function startHisoka() {
             console.log(err)
         }
     })
-    
+
     // Group Update
     hisoka.ev.on('groups.update', async pea => {
        //console.log(pea)
@@ -145,7 +145,7 @@ async function startHisoka() {
             console.log(err)
         }
     })
-	
+
     // Setting
     hisoka.decodeJid = (jid) => {
         if (!jid) return jid
@@ -154,7 +154,7 @@ async function startHisoka() {
             return decode.user && decode.server && decode.user + '@' + decode.server || jid
         } else return jid
     }
-    
+
     hisoka.ev.on('contacts.update', update => {
         for (let contact of update) {
             let id = hisoka.decodeJid(contact.id)
@@ -164,7 +164,7 @@ async function startHisoka() {
 
     hisoka.getName = (jid, withoutContact  = false) => {
         id = hisoka.decodeJid(jid)
-        withoutContact = hisoka.withoutContact || withoutContact 
+        withoutContact = hisoka.withoutContact || withoutContact
         let v
         if (id.endsWith("@g.us")) return new Promise(async (resolve) => {
             v = store.contacts[id] || {}
@@ -179,7 +179,7 @@ async function startHisoka() {
             (store.contacts[id] || {})
             return (withoutContact ? '' : v.name) || v.subject || v.verifiedName || PhoneNumber('+' + jid.replace('@s.whatsapp.net', '')).getNumber('international')
     }
-    
+
     hisoka.sendContact = async (jid, kon, quoted = '', opts = {}) => {
 	let list = []
 	for (let i of kon) {
@@ -190,7 +190,7 @@ async function startHisoka() {
 	}
 	hisoka.sendMessage(jid, { contacts: { displayName: `${list.length} Kontak`, contacts: list }, ...opts }, { quoted })
     }
-    
+
     hisoka.setStatus = (status) => {
         hisoka.query({
             tag: 'iq',
@@ -207,13 +207,13 @@ async function startHisoka() {
         })
         return status
     }
-	
+
     hisoka.public = true
 
     hisoka.serializeM = (m) => smsg(hisoka, m, store)
 
     hisoka.ev.on('connection.update', async (update) => {
-        const { connection, lastDisconnect } = update	    
+        const { connection, lastDisconnect } = update
         if (connection === 'close') {
         let reason = new Boom(lastDisconnect?.error)?.output.statusCode
             if (reason === DisconnectReason.badSession) { console.log(`Bad Session File, Please Delete Session and Scan Again`); hisoka.logout(); }
@@ -257,13 +257,13 @@ async function startHisoka() {
     }
 
     /**
-     * 
-     * @param {*} jid 
-     * @param {*} buttons 
-     * @param {*} caption 
-     * @param {*} footer 
-     * @param {*} quoted 
-     * @param {*} options 
+     *
+     * @param {*} jid
+     * @param {*} buttons
+     * @param {*} caption
+     * @param {*} footer
+     * @param {*} quoted
+     * @param {*} options
      */
     hisoka.sendButtonText = (jid, buttons = [], text, footer, quoted = '', options = {}) => {
         let buttonMessage = {
@@ -275,25 +275,25 @@ async function startHisoka() {
         }
         hisoka.sendMessage(jid, buttonMessage, { quoted, ...options })
     }
-    
+
     /**
-     * 
-     * @param {*} jid 
-     * @param {*} text 
-     * @param {*} quoted 
-     * @param {*} options 
-     * @returns 
+     *
+     * @param {*} jid
+     * @param {*} text
+     * @param {*} quoted
+     * @param {*} options
+     * @returns
      */
     hisoka.sendText = (jid, text, quoted = '', options) => hisoka.sendMessage(jid, { text: text, ...options }, { quoted })
 
     /**
-     * 
-     * @param {*} jid 
-     * @param {*} path 
-     * @param {*} caption 
-     * @param {*} quoted 
-     * @param {*} options 
-     * @returns 
+     *
+     * @param {*} jid
+     * @param {*} path
+     * @param {*} caption
+     * @param {*} quoted
+     * @param {*} options
+     * @returns
      */
     hisoka.sendImage = async (jid, path, caption = '', quoted = '', options) => {
 	let buffer = Buffer.isBuffer(path) ? path : /^data:.*?\/.*?;base64,/i.test(path) ? Buffer.from(path.split`,`[1], 'base64') : /^https?:\/\//.test(path) ? await (await getBuffer(path)) : fs.existsSync(path) ? fs.readFileSync(path) : Buffer.alloc(0)
@@ -301,13 +301,13 @@ async function startHisoka() {
     }
 
     /**
-     * 
-     * @param {*} jid 
-     * @param {*} path 
-     * @param {*} caption 
-     * @param {*} quoted 
-     * @param {*} options 
-     * @returns 
+     *
+     * @param {*} jid
+     * @param {*} path
+     * @param {*} caption
+     * @param {*} quoted
+     * @param {*} options
+     * @returns
      */
     hisoka.sendVideo = async (jid, path, caption = '', quoted = '', gif = false, options) => {
         let buffer = Buffer.isBuffer(path) ? path : /^data:.*?\/.*?;base64,/i.test(path) ? Buffer.from(path.split`,`[1], 'base64') : /^https?:\/\//.test(path) ? await (await getBuffer(path)) : fs.existsSync(path) ? fs.readFileSync(path) : Buffer.alloc(0)
@@ -315,13 +315,13 @@ async function startHisoka() {
     }
 
     /**
-     * 
-     * @param {*} jid 
-     * @param {*} path 
-     * @param {*} quoted 
-     * @param {*} mime 
-     * @param {*} options 
-     * @returns 
+     *
+     * @param {*} jid
+     * @param {*} path
+     * @param {*} quoted
+     * @param {*} mime
+     * @param {*} options
+     * @returns
      */
     hisoka.sendAudio = async (jid, path, quoted = '', ptt = false, options) => {
         let buffer = Buffer.isBuffer(path) ? path : /^data:.*?\/.*?;base64,/i.test(path) ? Buffer.from(path.split`,`[1], 'base64') : /^https?:\/\//.test(path) ? await (await getBuffer(path)) : fs.existsSync(path) ? fs.readFileSync(path) : Buffer.alloc(0)
@@ -329,22 +329,22 @@ async function startHisoka() {
     }
 
     /**
-     * 
-     * @param {*} jid 
-     * @param {*} text 
-     * @param {*} quoted 
-     * @param {*} options 
-     * @returns 
+     *
+     * @param {*} jid
+     * @param {*} text
+     * @param {*} quoted
+     * @param {*} options
+     * @returns
      */
     hisoka.sendTextWithMentions = async (jid, text, quoted, options = {}) => hisoka.sendMessage(jid, { text: text, contextInfo: { mentionedJid: [...text.matchAll(/@(\d{0,16})/g)].map(v => v[1] + '@s.whatsapp.net') }, ...options }, { quoted })
 
     /**
-     * 
-     * @param {*} jid 
-     * @param {*} path 
-     * @param {*} quoted 
-     * @param {*} options 
-     * @returns 
+     *
+     * @param {*} jid
+     * @param {*} path
+     * @param {*} quoted
+     * @param {*} options
+     * @returns
      */
     hisoka.sendImageAsSticker = async (jid, path, quoted, options = {}) => {
         let buff = Buffer.isBuffer(path) ? path : /^data:.*?\/.*?;base64,/i.test(path) ? Buffer.from(path.split`,`[1], 'base64') : /^https?:\/\//.test(path) ? await (await getBuffer(path)) : fs.existsSync(path) ? fs.readFileSync(path) : Buffer.alloc(0)
@@ -360,12 +360,12 @@ async function startHisoka() {
     }
 
     /**
-     * 
-     * @param {*} jid 
-     * @param {*} path 
-     * @param {*} quoted 
-     * @param {*} options 
-     * @returns 
+     *
+     * @param {*} jid
+     * @param {*} path
+     * @param {*} quoted
+     * @param {*} options
+     * @returns
      */
     hisoka.sendVideoAsSticker = async (jid, path, quoted, options = {}) => {
         let buff = Buffer.isBuffer(path) ? path : /^data:.*?\/.*?;base64,/i.test(path) ? Buffer.from(path.split`,`[1], 'base64') : /^https?:\/\//.test(path) ? await (await getBuffer(path)) : fs.existsSync(path) ? fs.readFileSync(path) : Buffer.alloc(0)
@@ -379,13 +379,13 @@ async function startHisoka() {
         await hisoka.sendMessage(jid, { sticker: { url: buffer }, ...options }, { quoted })
         return buffer
     }
-	
+
     /**
-     * 
-     * @param {*} message 
-     * @param {*} filename 
-     * @param {*} attachExtension 
-     * @returns 
+     *
+     * @param {*} message
+     * @param {*} filename
+     * @param {*} attachExtension
+     * @returns
      */
     hisoka.downloadAndSaveMediaMessage = async (message, filename, attachExtension = true) => {
         let quoted = message.msg ? message.msg : message
@@ -411,19 +411,19 @@ async function startHisoka() {
         for await(const chunk of stream) {
             buffer = Buffer.concat([buffer, chunk])
 	}
-        
+
 	return buffer
-     } 
-    
+     }
+
     /**
-     * 
-     * @param {*} jid 
-     * @param {*} path 
+     *
+     * @param {*} jid
+     * @param {*} path
      * @param {*} filename
      * @param {*} caption
-     * @param {*} quoted 
-     * @param {*} options 
-     * @returns 
+     * @param {*} quoted
+     * @param {*} options
+     * @returns
      */
     hisoka.sendMedia = async (jid, path, fileName = '', caption = '', quoted = '', options = {}) => {
         let types = await hisoka.getFile(path, true)
@@ -451,12 +451,12 @@ async function startHisoka() {
        }
 
     /**
-     * 
-     * @param {*} jid 
-     * @param {*} message 
-     * @param {*} forceForward 
-     * @param {*} options 
-     * @returns 
+     *
+     * @param {*} jid
+     * @param {*} message
+     * @param {*} forceForward
+     * @param {*} options
+     * @returns
      */
     hisoka.copyNForward = async (jid, message, forceForward = false, options = {}) => {
         let vtype
@@ -521,9 +521,9 @@ async function startHisoka() {
 
 
     /**
-     * 
-     * @param {*} path 
-     * @returns 
+     *
+     * @param {*} path
+     * @returns
      */
     hisoka.getFile = async (PATH, save) => {
         let res
