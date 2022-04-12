@@ -103,13 +103,13 @@ async function startHisoka() {
        }
        let wm_fatih = { url : ppgc }
        if (pea[0].announce == true) {
-       hisoka.send5ButImg(pea[0].id, `「 Group Settings Change 」\n\nGroup telah ditutup oleh admin, Sekarang hanya admin yang dapat mengirim pesan !`, `Group Settings Change Message`, wm_fatih, [])
+       hisoka.send5ButImg(pea[0].id, `「 Group Settings Change 」\n\nEl grupo ha sido cerrado por el administrador. ¡Ahora solo el administrador puede enviar mensajes! `, `Group Settings Change Message`, wm_fatih, [])
        } else if(pea[0].announce == false) {
-       hisoka.send5ButImg(pea[0].id, `「 Group Settings Change 」\n\nGroup telah dibuka oleh admin, Sekarang peserta dapat mengirim pesan !`, `Group Settings Change Message`, wm_fatih, [])
+       hisoka.send5ButImg(pea[0].id, `「 Group Settings Change 」\n\nEl administrador ha abierto el grupo. Ahora los participantes pueden enviar mensajes!`, `Group Settings Change Message`, wm_fatih, [])
        } else if (pea[0].restrict == true) {
        hisoka.send5ButImg(pea[0].id, `「 Group Settings Change 」\n\nInfo group telah dibatasi, Sekarang hanya admin yang dapat mengedit info group !`, `Group Settings Change Message`, wm_fatih, [])
        } else if (pea[0].restrict == false) {
-       hisoka.send5ButImg(pea[0].id, `「 Group Settings Change 」\n\nInfo group telah dibuka, Sekarang peserta dapat mengedit info group !`, `Group Settings Change Message`, wm_fatih, [])
+       hisoka.send5ButImg(pea[0].id, `「 Group Settings Change 」\n\nLa información del grupo se ha abierto, ¡ahora los participantes pueden editar la información del grupo!`, `Group Settings Change Message`, wm_fatih, [])
        } else {
        hisoka.send5ButImg(pea[0].id, `「 Group Settings Change 」\n\nEl asunto del grupo se ha cambiado a *${pea[0].subject}*`, `Group Settings Change Message`, wm_fatih, [])
      }

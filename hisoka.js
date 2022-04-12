@@ -1,4 +1,4 @@
-/**
+Información del grupo de edición abierta con éxito/**
    * Create By Dika Ardnt.
    * Contact Me on wa.me/6288292024190
    * Follow https://github.com/DikaArdnt
@@ -756,14 +756,14 @@ Silahkan @${m.mentionedJid[0].split`@`[0]} untuk ketik terima/tolak`
 		await hisoka.groupParticipantsUpdate(m.chat, [users], 'remove').then((res) => m.reply(jsonformat(res))).catch((err) => m.reply(jsonformat(err)))
 	}
 	break
-	case 'add': {
+/**	case 'add': {
 		if (!m.isGroup) throw mess.group
                 if (!isBotAdmins) throw mess.botAdmin
                 if (!isAdmins) throw mess.admin
 		let users = m.quoted ? m.quoted.sender : text.replace(/[^0-9]/g, '')+'@s.whatsapp.net'
 		await hisoka.groupParticipantsUpdate(m.chat, [users], 'add').then((res) => m.reply(jsonformat(res))).catch((err) => m.reply(jsonformat(err)))
 	}
-	break
+	break */
 	case 'promote': {
 		if (!m.isGroup) throw mess.group
                 if (!isBotAdmins) throw mess.botAdmin
@@ -835,20 +835,20 @@ Silahkan @${m.mentionedJid[0].split`@`[0]} untuk ketik terima/tolak`
                 if (!isAdmins) throw mess.admin
 let teks = `══✪〘 *👥 Tag All* 〙✪══
 
- ➲ *Pesan : ${q ? q : 'kosong'}*\n\n`
+ ➲ *Mensaje: ${q ? q : 'kosong'}*\n\n`
                 for (let mem of participants) {
                 teks += `⭔ @${mem.id.split('@')[0]}\n`
                 }
                 hisoka.sendMessage(m.chat, { text: teks, mentions: participants.map(a => a.id) }, { quoted: m })
                 }
                 break
-                case 'hidetag': {
+              /**  case 'hidetag': {
             if (!m.isGroup) throw mess.group
             if (!isBotAdmins) throw mess.botAdmin
             if (!isAdmins) throw mess.admin
             hisoka.sendMessage(m.chat, { text : q ? q : '' , mentions: participants.map(a => a.id)}, { quoted: m })
             }
-            break
+            break*/
 	    case 'style': case 'styletext': {
 	        if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit) // respon ketika limit habis
 		db.data.users[m.sender].limit -= 1 // -1 limit
@@ -864,10 +864,10 @@ let teks = `══✪〘 *👥 Tag All* 〙✪══
 	    break
                case 'vote': {
             if (!m.isGroup) throw mess.group
-            if (m.chat in vote) throw `_Masih ada vote di chat ini!_\n\n*${prefix}hapusvote* - untuk menghapus vote`
-            if (!text) throw `Masukkan Alasan Melakukan Vote, Example: *${prefix + command} Owner Ganteng*`
-            m.reply(`Vote dimulai!\n\n*${prefix}upvote* - untuk ya\n*${prefix}devote* - untuk tidak\n*${prefix}cekvote* - untuk mengecek vote\n*${prefix}hapusvote* - untuk menghapus vote`)
-            vote[m.chat] = [q, [], []]
+            if (m.chat in vote) throw `_¡Todavía hay votos en este chat!_\n\n*${prefix}no votar* - para borrar votos`
+            if (!text) throw `Ingrese el motivo de la votación, ejemplo: *${prefix + command} el pan se come?`
+            m.reply(`¡Comienza la votación!\n\n*${prefix}upvote* - para sí\n*${prefix}devote* - para no\n*${prefix}checkvote* - para verificar voto\n*${prefix}deletevote* - para eliminar voto`)
+             vote[m.chat] = [q, [], []]
             await sleep(1000)
             upvote = vote[m.chat][1]
             devote = vote[m.chat][2]
@@ -1029,9 +1029,9 @@ break
                 if (!isBotAdmins) throw mess.botAdmin
                 if (!isAdmins) throw mess.admin
                 if (args[0] === 'close'){
-                    await hisoka.groupSettingUpdate(m.chat, 'announcement').then((res) => m.reply(`Sukses Menutup Group`)).catch((err) => m.reply(jsonformat(err)))
+                    await hisoka.groupSettingUpdate(m.chat, 'announcement').then((res) => m.reply(`Grupo de cierre exitoso`)).catch((err) => m.reply(jsonformat(err)))
                 } else if (args[0] === 'open'){
-                    await hisoka.groupSettingUpdate(m.chat, 'not_announcement').then((res) => m.reply(`Sukses Membuka Group`)).catch((err) => m.reply(jsonformat(err)))
+                    await hisoka.groupSettingUpdate(m.chat, 'not_announcement').then((res) => m.reply(`Apertura exitosa de un grupo`)).catch((err) => m.reply(jsonformat(err)))
                 } else {
                 let buttons = [
                         { buttonId: 'group open', buttonText: { displayText: 'Open' }, type: 1 },
@@ -1047,7 +1047,7 @@ break
                 if (!isBotAdmins) throw mess.botAdmin
                 if (!isAdmins) throw mess.admin
              if (args[0] === 'open'){
-                await hisoka.groupSettingUpdate(m.chat, 'unlocked').then((res) => m.reply(`Sukses Membuka Edit Info Group`)).catch((err) => m.reply(jsonformat(err)))
+                await hisoka.groupSettingUpdate(m.chat, 'unlocked').then((res) => m.reply(`Información del grupo de edición abierta con éxito`)).catch((err) => m.reply(jsonformat(err)))
              } else if (args[0] === 'close'){
                 await hisoka.groupSettingUpdate(m.chat, 'locked').then((res) => m.reply(`Sukses Menutup Edit Info Group`)).catch((err) => m.reply(jsonformat(err)))
              } else {
@@ -1067,11 +1067,11 @@ break
                 if (args[0] === "on") {
                 if (db.data.chats[m.chat].antilink) return m.reply(`Sudah Aktif Sebelumnya`)
                 db.data.chats[m.chat].antilink = true
-                m.reply(`Antilink Aktif !`)
+                m.reply(`Antilink On !`)
                 } else if (args[0] === "off") {
                 if (!db.data.chats[m.chat].antilink) return m.reply(`Sudah Tidak Aktif Sebelumnya`)
                 db.data.chats[m.chat].antilink = false
-                m.reply(`Antilink Tidak Aktif !`)
+                m.reply(`Antilink OFF !`)
                 } else {
                  let buttons = [
                         { buttonId: 'antilink on', buttonText: { displayText: 'On' }, type: 1 },
@@ -1088,11 +1088,11 @@ break
                 if (args[0] === "on") {
                 if (db.data.chats[m.chat].mute) return m.reply(`Sudah Aktif Sebelumnya`)
                 db.data.chats[m.chat].mute = true
-                m.reply(`${hisoka.user.name} telah di mute di group ini !`)
+                m.reply(`${hisoka.user.name} ha sido silenciado en este grupo!`)
                 } else if (args[0] === "off") {
                 if (!db.data.chats[m.chat].mute) return m.reply(`Sudah Tidak Aktif Sebelumnya`)
                 db.data.chats[m.chat].mute = false
-                m.reply(`${hisoka.user.name} telah di unmute di group ini !`)
+                m.reply(`${hisoka.user.name} sidencio desactivado !`)
                 } else {
                  let buttons = [
                         { buttonId: 'mute on', buttonText: { displayText: 'On' }, type: 1 },
@@ -2544,9 +2544,7 @@ ${cpus.map((cpu, i) => `${i + 1}. ${cpu.model.trim()} (${cpu.speed} MHZ)\n${Obje
 │⭔ ${prefix}setdesc [text]
 │⭔ ${prefix}group [option]
 │⭔ ${prefix}editinfo [option]
-│⭔ ${prefix}add @user
 │⭔ ${prefix}kick @user
-│⭔ ${prefix}hidetag [text]
 │⭔ ${prefix}tagall [text]
 │⭔ ${prefix}antilink [on/off]
 │⭔ ${prefix}mute [on/off]
