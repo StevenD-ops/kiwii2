@@ -1,4 +1,4 @@
-Información del grupo de edición abierta con éxito/**
+/**
    * Create By Dika Ardnt.
    * Contact Me on wa.me/6288292024190
    * Follow https://github.com/DikaArdnt
@@ -1047,7 +1047,7 @@ break
                 if (!isBotAdmins) throw mess.botAdmin
                 if (!isAdmins) throw mess.admin
              if (args[0] === 'open'){
-                await hisoka.groupSettingUpdate(m.chat, 'unlocked').then((res) => m.reply(`Sukses Membuka Edit Info Group`)).catch((err) => m.reply(jsonformat(err)))
+                await hisoka.groupSettingUpdate(m.chat, 'unlocked').then((res) => m.reply(`Información del grupo de edición abierta con éxito`)).catch((err) => m.reply(jsonformat(err)))
              } else if (args[0] === 'close'){
                 await hisoka.groupSettingUpdate(m.chat, 'locked').then((res) => m.reply(`Sukses Menutup Edit Info Group`)).catch((err) => m.reply(jsonformat(err)))
              } else {
