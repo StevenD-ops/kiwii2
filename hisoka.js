@@ -2540,7 +2540,7 @@ ${cpus.map((cpu, i) => `${i + 1}. ${cpu.model.trim()} (${cpu.speed} MHZ)\n${Obje
 │⭔ ${prefix}linkgroup
 │⭔ ${prefix}efimero [Enable/Disable]
 │⭔ ${prefix}setppgc [image]
-│⭔ ${prefix}setname [text]
+│⭔ ${prefix}setname [text] cambia el nombre del grupo
 │⭔ ${prefix}setdesc [text]
 │⭔ ${prefix}group [option]
 │⭔ ${prefix}editinfo [option]

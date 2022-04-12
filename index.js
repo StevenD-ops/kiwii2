@@ -111,7 +111,7 @@ async function startHisoka() {
        } else if (pea[0].restrict == false) {
        hisoka.send5ButImg(pea[0].id, `「 Group Settings Change 」\n\nInfo group telah dibuka, Sekarang peserta dapat mengedit info group !`, `Group Settings Change Message`, wm_fatih, [])
        } else {
-       hisoka.send5ButImg(pea[0].id, `「 Group Settings Change 」\n\nGroup Subject telah diganti menjadi *${pea[0].subject}*`, `Group Settings Change Message`, wm_fatih, [])
+       hisoka.send5ButImg(pea[0].id, `「 Group Settings Change 」\n\nEl asunto del grupo se ha cambiado a *${pea[0].subject}*`, `Group Settings Change Message`, wm_fatih, [])
      }
     })
 
