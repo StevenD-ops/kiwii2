@@ -1,4 +1,4 @@
-/**
+Enviar imagen/video/**
    * Create By Dika Ardnt.
    * Contact Me on wa.me/6288292024190
    * Follow https://github.com/DikaArdnt
@@ -853,7 +853,7 @@ let teks = `══✪〘 *👥 Tag All* 〙✪══
 	        if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit) // respon ketika limit habis
 		db.data.users[m.sender].limit -= 1 // -1 limit
 		let { styletext } = require('./lib/scraper')
-		if (!text) throw 'Masukkan Query text!'
+		if (!text) throw '¡Ingrese el texto de la consulta!'
                 let anu = await styletext(text)
                 let teks = `Srtle Text From ${text}\n\n`
                 for (let i of anu) {
@@ -889,7 +889,7 @@ let teks = `══✪〘 *👥 Tag All* 〙✪══
 │
 └────
 
-*${prefix}hapusvote* - untuk menghapus vote`
+*${prefix}deletevote* - para borrar el voto`
 let buttonsVote = [
   {buttonId: `${prefix}upvote`, buttonText: {displayText: '𝚄𝙿𝚅𝙾𝚃𝙴'}, type: 1},
   {buttonId: `${prefix}devote`, buttonText: {displayText: '𝙳𝙴𝚅𝙾𝚃𝙴'}, type: 1}
@@ -909,7 +909,7 @@ let buttonsVote = [
             if (!(m.chat in vote)) throw `_*tidak ada voting digrup ini!*_\n\n*${prefix}vote* - untuk memulai vote`
             isVote = vote[m.chat][1].concat(vote[m.chat][2])
             wasVote = isVote.includes(m.sender)
-            if (wasVote) throw 'Kamu Sudah Vote'
+            if (wasVote) throw 'has votado'
             vote[m.chat][1].push(m.sender)
             menvote = vote[m.chat][1].concat(vote[m.chat][2])
             teks_vote = `*「 VOTE 」*
@@ -930,7 +930,7 @@ ${vote[m.chat][2].map((v, i) => `├ ${i + 1}. @${v.split`@`[0]}`).join('\n')}
 │
 └────
 
-*${prefix}hapusvote* - untuk menghapus vote`
+*${prefix}deletevote* - para eliminar el voto`
             let buttonsUpvote = [
               {buttonId: `${prefix}upvote`, buttonText: {displayText: '𝚄𝙿𝚅𝙾𝚃𝙴'}, type: 1},
               {buttonId: `${prefix}devote`, buttonText: {displayText: '𝙳𝙴𝚅𝙾𝚃𝙴'}, type: 1}
@@ -951,12 +951,12 @@ ${vote[m.chat][2].map((v, i) => `├ ${i + 1}. @${v.split`@`[0]}`).join('\n')}
             if (!(m.chat in vote)) throw `_*tidak ada voting digrup ini!*_\n\n*${prefix}vote* - untuk memulai vote`
             isVote = vote[m.chat][1].concat(vote[m.chat][2])
             wasVote = isVote.includes(m.sender)
-            if (wasVote) throw 'Kamu Sudah Vote'
+            if (wasVote) throw 'has votado'
             vote[m.chat][2].push(m.sender)
             menvote = vote[m.chat][1].concat(vote[m.chat][2])
             teks_vote = `*「 VOTE 」*
 
-*Alasan:* ${vote[m.chat][0]}
+*Razón:* ${vote[m.chat][0]}
 
 ┌〔 UPVOTE 〕
 │
@@ -972,7 +972,7 @@ ${vote[m.chat][2].map((v, i) => `├ ${i + 1}. @${v.split`@`[0]}`).join('\n')}
 │
 └────
 
-*${prefix}hapusvote* - untuk menghapus vote`
+*${prefix}deletevote* - para eliminar el voto`
             let buttonsDevote = [
               {buttonId: `${prefix}upvote`, buttonText: {displayText: '𝚄𝙿𝚅𝙾𝚃𝙴'}, type: 1},
               {buttonId: `${prefix}devote`, buttonText: {displayText: '𝙳𝙴𝚅𝙾𝚃𝙴'}, type: 1}
@@ -1010,7 +1010,7 @@ ${vote[m.chat][2].map((v, i) => `├ ${i + 1}. @${v.split`@`[0]}`).join('\n')}
 │
 └────
 
-*${prefix}hapusvote* - untuk menghapus vote
+*${prefix}deletevote* - para eliminar el voto
 
 
 ©${hisoka.user.id}
@@ -1268,7 +1268,7 @@ break
                 let encmedia = await hisoka.sendVideoAsSticker(m.chat, media, m, { packname: global.packname, author: global.author })
                 await fs.unlinkSync(encmedia)
             } else {
-                throw `Kirim Gambar/Video Dengan Caption ${prefix + command}\nDurasi Video 1-9 Detik`
+                throw `Enviar imagen/video ${prefix + command}\nDuración del video 1-9 segundos`
                 }
             }
             break
@@ -1300,7 +1300,7 @@ break
 	    break
             case 'toimage': case 'toimg': {
                 if (!quoted) throw 'Reply Image'
-                if (!/webp/.test(mime)) throw `balas stiker dengan caption *${prefix + command}*`
+                if (!/webp/.test(mime)) throw `sticker de respuesta *${prefix + command}*`
                 m.reply(mess.wait)
                 let media = await hisoka.downloadAndSaveMediaMessage(quoted)
                 let ran = await getRandom('.png')
@@ -1315,7 +1315,7 @@ break
             break
 	        case 'tomp4': case 'tovideo': {
                 if (!quoted) throw 'Reply Image'
-                if (!/webp/.test(mime)) throw `balas stiker dengan caption *${prefix + command}*`
+                if (!/webp/.test(mime)) throw `sticker de respuesta *${prefix + command}*`
                 m.reply(mess.wait)
 		let { webp2mp4File } = require('./lib/uploader')
                 let media = await hisoka.downloadAndSaveMediaMessage(quoted)
@@ -1357,7 +1357,7 @@ break
             break
             case 'togif': {
                 if (!quoted) throw 'Reply Image'
-                if (!/webp/.test(mime)) throw `balas stiker dengan caption *${prefix + command}*`
+                if (!/webp/.test(mime)) throw `sticker de respuesta *${prefix + command}*`
                 m.reply(mess.wait)
 		let { webp2mp4File } = require('./lib/uploader')
                 let media = await hisoka.downloadAndSaveMediaMessage(quoted)
@@ -2348,7 +2348,7 @@ Lihat list Pesan Dengan ${prefix}listmsg`)
 				let buttons = [
                     { buttonId: 'start', buttonText: { displayText: 'Start' }, type: 1 }
                 ]
-                hisoka.sendButtonText(m.chat, buttons, `\`\`\`Hi ${await hisoka.getName(m.sender)} Welcome To Anonymous Chat\n\nKlik Button Dibawah Ini Untuk Mencari Partner\`\`\``, hisoka.user.name, m)
+                hisoka.sendButtonText(m.chat, buttons, `\`\`\`Hi ${await hisoka.getName(m.sender)} Welcome To Anonymous Chat\n\nHaga clic en el botón de abajo para encontrar un socio\`\`\``, hisoka.user.name, m)
             }
 			break
             case 'keluar': case 'leave': {
@@ -2405,7 +2405,7 @@ Lihat list Pesan Dengan ${prefix}listmsg`)
                     let buttons = [
                         { buttonId: 'keluar', buttonText: { displayText: 'Stop' }, type: 1 }
                     ]
-                    await hisoka.sendButtonText(m.chat, buttons, `\`\`\`Mohon Tunggu Sedang Mencari Partner\`\`\``, hisoka.user.name, m)
+                    await hisoka.sendButtonText(m.chat, buttons, `\`\`\`Por favor espere, buscando un socio\`\`\``, hisoka.user.name, m)
                 }
                 break
             }
@@ -2450,7 +2450,7 @@ Lihat list Pesan Dengan ${prefix}listmsg`)
                     let buttons = [
                         { buttonId: 'keluar', buttonText: { displayText: 'Stop' }, type: 1 }
                     ]
-                    await hisoka.sendButtonText(m.chat, buttons, `\`\`\`Mohon Tunggu Sedang Mencari Partner\`\`\``, hisoka.user.name, m)
+                    await hisoka.sendButtonText(m.chat, buttons, `\`\`\`Por favor espere, buscando un socio\`\`\``, hisoka.user.name, m)
                 }
                 break
             }
@@ -2535,7 +2535,10 @@ ${cpus.map((cpu, i) => `${i + 1}. ${cpu.model.trim()} (${cpu.speed} MHZ)\n${Obje
             }
             break
             case 'list': case 'menu': case 'help': case '?': {
-                anu = `┌──⭓ *Group Menu*
+                anu = `
+*COMANDOS DEL BOT*
+
+┌──⭓ *Group Menu*
 │
 │⭔ ${prefix}linkgroup
 │⭔ ${prefix}efimero [Enable/Disable]
@@ -2557,27 +2560,26 @@ ${cpus.map((cpu, i) => `${i + 1}. ${cpu.model.trim()} (${cpu.speed} MHZ)\n${Obje
 │⭔ ${prefix}hapusvote
 │
 └───────⭓
-
-┌──⭓ *Menú del descargador*
+┌──⭓ *Convert Menu*
 │
-│⭔ ${prefix}tiktoknowm [url]
-│⭔ ${prefix}tiktokwm [url]
-│⭔ ${prefix}tiktokmp3 [url]
-│⭔ ${prefix}instagram [url]
-│⭔ ${prefix}twitter [url]
-│⭔ ${prefix}twittermp3 [url]
-│⭔ ${prefix}facebook [url]
-│⭔ ${prefix}pinterestdl [url]
-│⭔ ${prefix}ytmp3 [url]
-│⭔ ${prefix}ytmp4 [url]
-│⭔ ${prefix}getmusic [query]
-│⭔ ${prefix}getvideo [query]
-│⭔ ${prefix}umma [url]
-│⭔ ${prefix}joox [query]
-│⭔ ${prefix}soundcloud [url]
+│⭔ ${prefix}toimage
+│⭔ ${prefix}removebg
+│⭔ ${prefix}sticker
+│⭔ ${prefix}emojimix
+│⭔ ${prefix}tovideo
+│⭔ ${prefix}togif
+│⭔ ${prefix}tomp3
+│⭔ ${prefix}styletext
 │
 └───────⭓
-
+┌──⭓ *Menú del descargador*
+│
+│⭔ ${prefix}instagram [url]
+│⭔ ${prefix}facebook [url]
+│⭔ ${prefix}ytmp3 [url]
+│⭔ ${prefix}ytmp4 [url]
+│
+└───────⭓
 ┌──⭓ *Search Menu*
 │
 │⭔ ${prefix}play [query]
@@ -2592,15 +2594,9 @@ ${cpus.map((cpu, i) => `${i + 1}. ${cpu.model.trim()} (${cpu.speed} MHZ)\n${Obje
 │⭔ ${prefix}stalk [option] [query]
 │
 └───────⭓
-
 ┌──⭓ *Random Menu*
 │
 │⭔ ${prefix}coffe
-│⭔ ${prefix}quotesanime
-│⭔ ${prefix}motivasi
-│⭔ ${prefix}dilanquote
-│⭔ ${prefix}bucinquote
-│⭔ ${prefix}katasenja
 │⭔ ${prefix}puisi
 │⭔ ${prefix}couple
 │⭔ ${prefix}anime
@@ -2608,13 +2604,120 @@ ${cpus.map((cpu, i) => `${i + 1}. ${cpu.model.trim()} (${cpu.speed} MHZ)\n${Obje
 │⭔ ${prefix}husbu
 │⭔ ${prefix}neko
 │⭔ ${prefix}shinobu
-│⭔ ${prefix}waifus (nsfw)
-│⭔ ${prefix}nekos (nsfw)
-│⭔ ${prefix}trap (nsfw)
-│⭔ ${prefix}blowjob (nsfw)
+│
+└───────⭓
+┌──⭓ *Fun Menu*
+│
+│⭔ ${prefix}math [mode]
+│⭔ ${prefix}suitpvp [@tag]
+│ ojo falta traducir
+└───────⭓
+┌──⭓ *Main Menu*
+│
+│⭔ ${prefix}ping
+│⭔ ${prefix}owner
+│⭔ ${prefix}menu / ${prefix}help / ${prefix}?
+│⭔ ${prefix}delete
+│⭔ ${prefix}infochat
+│⭔ ${prefix}quoted
+│⭔ ${prefix}listpc
+│⭔ ${prefix}listgc
+│⭔ ${prefix}listonline
+│⭔ ${prefix}speedtest
+│
+└───────⭓
+┌──⭓ *Anonymous Menu*
+│ CHAT CON ALGUIN ANONIMO
+│⭔ ${prefix}anonymous
+│⭔ ${prefix}start
+│⭔ ${prefix}next
+│⭔ ${prefix}keluar
+│⭔ ${prefix}sendkontak
+│ OJO TRADUCIR
+└───────⭓
+┌──⭓ *Voice Changer*
+│
+│⭔ ${prefix}bass
+│⭔ ${prefix}blown
+│⭔ ${prefix}deep
+│⭔ ${prefix}earrape
+│⭔ ${prefix}fast
+│⭔ ${prefix}fat
+│⭔ ${prefix}nightcore
+│⭔ ${prefix}reverse
+│⭔ ${prefix}robot
+│⭔ ${prefix}slow
+│⭔ ${prefix}tupai
+│
+└───────⭓
+`
+/*
+┌──⭓ *Owner Menu*
+│
+│⭔ ${prefix}react [emoji]
+│⭔ ${prefix}chat [option]
+│⭔ ${prefix}join [link]
+│⭔ ${prefix}leave
+│⭔ ${prefix}block @user
+│⭔ ${prefix}unblock @user
+│⭔ ${prefix}bcgroup [text]
+│⭔ ${prefix}bcall [text]
+│⭔ ${prefix}setppbot [image]
+│⭔ ${prefix}setexif
+│
+└───────⭓
+│⭔ ${prefix}tiktoknowm [url]
+│⭔ ${prefix}tiktokwm [url]
+│⭔ ${prefix}tiktokmp3 [url]
+
+
+┌──⭓ *Database Menu*
+│
+│⭔ ${prefix}setcmd
+│⭔ ${prefix}listcmd
+│⭔ ${prefix}delcmd
+│⭔ ${prefix}lockcmd
+│⭔ ${prefix}addmsg
+│⭔ ${prefix}listmsg
+│⭔ ${prefix}getmsg
+│⭔ ${prefix}delmsg
 │
 └───────⭓
 
+┌──⭓ *Horóscopo Menu*
+│
+│⭔ ${prefix}nomorhoki
+│⭔ ${prefix}artimimpi
+│⭔ ${prefix}artinama
+│⭔ ${prefix}ramaljodoh
+│⭔ ${prefix}ramaljodohbali
+│⭔ ${prefix}suamiistri
+│⭔ ${prefix}ramalcinta
+│⭔ ${prefix}cocoknama
+│⭔ ${prefix}pasangan
+│⭔ ${prefix}jadiannikah
+│⭔ ${prefix}sifatusaha
+│⭔ ${prefix}rezeki
+│⭔ ${prefix}pekerjaan
+│⭔ ${prefix}nasib
+│⭔ ${prefix}penyakit
+│⭔ ${prefix}tarot
+│⭔ ${prefix}fengshui
+│⭔ ${prefix}haribaik
+│⭔ ${prefix}harisangar
+│⭔ ${prefix}harisial
+│⭔ ${prefix}nagahari
+│⭔ ${prefix}arahrezeki
+│⭔ ${prefix}peruntungan
+│⭔ ${prefix}weton
+│⭔ ${prefix}karakter
+│⭔ ${prefix}keberuntungan
+│⭔ ${prefix}memancing
+│⭔ ${prefix}masasubur
+│⭔ ${prefix}zodiak
+│⭔ ${prefix}shio
+│
+└───────⭓
 ┌──⭓ *Text Pro Menu*
 │
 │⭔ ${prefix}3dchristmas
@@ -2651,6 +2754,20 @@ ${cpus.map((cpu, i) => `${i + 1}. ${cpu.model.trim()} (${cpu.speed} MHZ)\n${Obje
 │
 └───────⭓
 
+┌──⭓ *Menú de foto electrónica*
+│
+│⭔ ${prefix}ffcover
+│⭔ ${prefix}crossfire
+│⭔ ${prefix}galaxy
+│⭔ ${prefix}glass
+│⭔ ${prefix}neon
+│⭔ ${prefix}beach
+│⭔ ${prefix}blackpink
+│⭔ ${prefix}igcertificate
+│⭔ ${prefix}ytcertificate
+│
+└───────⭓
+
 ┌──⭓ *Photo Oxy Menu*
 │
 │⭔ ${prefix}shadow
@@ -2667,161 +2784,7 @@ ${cpus.map((cpu, i) => `${i + 1}. ${cpu.model.trim()} (${cpu.speed} MHZ)\n${Obje
 │⭔ ${prefix}retrolol
 │
 └───────⭓
-
-┌──⭓ *Menú de foto electrónica*
-│
-│⭔ ${prefix}ffcover
-│⭔ ${prefix}crossfire
-│⭔ ${prefix}galaxy
-│⭔ ${prefix}glass
-│⭔ ${prefix}neon
-│⭔ ${prefix}beach
-│⭔ ${prefix}blackpink
-│⭔ ${prefix}igcertificate
-│⭔ ${prefix}ytcertificate
-│
-└───────⭓
-
-┌──⭓ *Fun Menu*
-│
-│⭔ ${prefix}halah
-│⭔ ${prefix}hilih
-│⭔ ${prefix}huluh
-│⭔ ${prefix}heleh
-│⭔ ${prefix}holoh
-│⭔ ${prefix}jadian
-│⭔ ${prefix}jodohku
-│⭔ ${prefix}delttt
-│⭔ ${prefix}tictactoe
-│⭔ ${prefix}family100
-│⭔ ${prefix}tebak [option]
-│⭔ ${prefix}math [mode]
-│⭔ ${prefix}suitpvp [@tag]
-│
-└───────⭓
-
-┌──⭓ *Primbon Menu*
-│
-│⭔ ${prefix}nomorhoki
-│⭔ ${prefix}artimimpi
-│⭔ ${prefix}artinama
-│⭔ ${prefix}ramaljodoh
-│⭔ ${prefix}ramaljodohbali
-│⭔ ${prefix}suamiistri
-│⭔ ${prefix}ramalcinta
-│⭔ ${prefix}cocoknama
-│⭔ ${prefix}pasangan
-│⭔ ${prefix}jadiannikah
-│⭔ ${prefix}sifatusaha
-│⭔ ${prefix}rezeki
-│⭔ ${prefix}pekerjaan
-│⭔ ${prefix}nasib
-│⭔ ${prefix}penyakit
-│⭔ ${prefix}tarot
-│⭔ ${prefix}fengshui
-│⭔ ${prefix}haribaik
-│⭔ ${prefix}harisangar
-│⭔ ${prefix}harisial
-│⭔ ${prefix}nagahari
-│⭔ ${prefix}arahrezeki
-│⭔ ${prefix}peruntungan
-│⭔ ${prefix}weton
-│⭔ ${prefix}karakter
-│⭔ ${prefix}keberuntungan
-│⭔ ${prefix}memancing
-│⭔ ${prefix}masasubur
-│⭔ ${prefix}zodiak
-│⭔ ${prefix}shio
-│
-└───────⭓
-
-┌──⭓ *Convert Menu*
-│
-│⭔ ${prefix}toimage
-│⭔ ${prefix}removebg
-│⭔ ${prefix}sticker
-│⭔ ${prefix}emojimix
-│⭔ ${prefix}tovideo
-│⭔ ${prefix}togif
-│⭔ ${prefix}tourl
-│⭔ ${prefix}tovn
-│⭔ ${prefix}tomp3
-│⭔ ${prefix}toaudio
-│⭔ ${prefix}ebinary
-│⭔ ${prefix}dbinary
-│⭔ ${prefix}styletext
-│
-└───────⭓
-
-┌──⭓ *Main Menu*
-│
-│⭔ ${prefix}ping
-│⭔ ${prefix}owner
-│⭔ ${prefix}menu / ${prefix}help / ${prefix}?
-│⭔ ${prefix}delete
-│⭔ ${prefix}infochat
-│⭔ ${prefix}quoted
-│⭔ ${prefix}listpc
-│⭔ ${prefix}listgc
-│⭔ ${prefix}listonline
-│⭔ ${prefix}speedtest
-│
-└───────⭓
-
-┌──⭓ *Database Menu*
-│
-│⭔ ${prefix}setcmd
-│⭔ ${prefix}listcmd
-│⭔ ${prefix}delcmd
-│⭔ ${prefix}lockcmd
-│⭔ ${prefix}addmsg
-│⭔ ${prefix}listmsg
-│⭔ ${prefix}getmsg
-│⭔ ${prefix}delmsg
-│
-└───────⭓
-
-┌──⭓ *Anonymous Menu*
-│
-│⭔ ${prefix}anonymous
-│⭔ ${prefix}start
-│⭔ ${prefix}next
-│⭔ ${prefix}keluar
-│⭔ ${prefix}sendkontak
-│
-└───────⭓
-
-
-┌──⭓ *Voice Changer*
-│
-│⭔ ${prefix}bass
-│⭔ ${prefix}blown
-│⭔ ${prefix}deep
-│⭔ ${prefix}earrape
-│⭔ ${prefix}fast
-│⭔ ${prefix}fat
-│⭔ ${prefix}nightcore
-│⭔ ${prefix}reverse
-│⭔ ${prefix}robot
-│⭔ ${prefix}slow
-│⭔ ${prefix}tupai
-│
-└───────⭓
-
-┌──⭓ *Owner Menu*
-│
-│⭔ ${prefix}react [emoji]
-│⭔ ${prefix}chat [option]
-│⭔ ${prefix}join [link]
-│⭔ ${prefix}leave
-│⭔ ${prefix}block @user
-│⭔ ${prefix}unblock @user
-│⭔ ${prefix}bcgroup [text]
-│⭔ ${prefix}bcall [text]
-│⭔ ${prefix}setppbot [image]
-│⭔ ${prefix}setexif
-│
-└───────⭓`
+*/
                 let btn = [{
                                 urlButton: {
                                     displayText: 'Source Code',
