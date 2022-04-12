@@ -2,7 +2,7 @@ Script WhatsApp Bot Multi Device
 
 ## NOTE
 
-<h1 align="center">Hisoka-Morou</h1>
+<h1 align="center">WHATSAPP BOT</h1>
 
 This is Script of WhatsApp multi device, working with [`@adiwajshing/baileys`](https://github.com/adiwajshing/baileys)
 
