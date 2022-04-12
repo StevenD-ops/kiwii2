@@ -1108,11 +1108,11 @@ break
                 hisoka.sendText(m.chat, `https://chat.whatsapp.com/${response}\n\nLink Group : ${groupMetadata.subject}`, m, { detectLink: true })
             }
             break
-            case 'ephemeral': {
+            case 'Efimero': {
                 if (!m.isGroup) throw mess.group
                 if (!isBotAdmins) throw mess.botAdmin
                 if (!isAdmins) throw mess.admin
-                if (!text) throw 'Masukkan value enable/disable'
+                if (!text) throw 'Introducir valor enable/disable'
                 if (args[0] === 'enable') {
                     await hisoka.sendMessage(m.chat, { disappearingMessagesInChat: WA_DEFAULT_EPHEMERAL }).then((res) => m.reply(jsonformat(res))).catch((err) => m.reply(jsonformat(err)))
                 } else if (args[0] === 'disable') {
@@ -2538,7 +2538,7 @@ ${cpus.map((cpu, i) => `${i + 1}. ${cpu.model.trim()} (${cpu.speed} MHZ)\n${Obje
                 anu = `┌──⭓ *Group Menu*
 │
 │⭔ ${prefix}linkgroup
-│⭔ ${prefix}ephemeral [option]
+│⭔ ${prefix}efimero [Enable/Disable]
 │⭔ ${prefix}setppgc [image]
 │⭔ ${prefix}setname [text]
 │⭔ ${prefix}setdesc [text]
