@@ -5,7 +5,7 @@
 */
 
 require('./config')
-const { BufferJSON, WA_DEFAULT_Efimero, generateWAMessageFromContent, proto, generateWAMessageContent, generateWAMessage, prepareWAMessageMedia, areJidsSameUser, getContentType } = require('@adiwajshing/baileys')
+const { BufferJSON, WA_DEFAULT_ephemeral, generateWAMessageFromContent, proto, generateWAMessageContent, generateWAMessage, prepareWAMessageMedia, areJidsSameUser, getContentType } = require('@adiwajshing/baileys')
 const fs = require('fs')
 const util = require('util')
 const chalk = require('chalk')
@@ -2538,7 +2538,7 @@ ${cpus.map((cpu, i) => `${i + 1}. ${cpu.model.trim()} (${cpu.speed} MHZ)\n${Obje
                 anu = `┌──⭓ *Group Menu*
 │
 │⭔ ${prefix}linkgroup
-│⭔ ${prefix}Efimero [Enable/Disable]
+│⭔ ${prefix}efimero [Enable/Disable]
 │⭔ ${prefix}setppgc [image]
 │⭔ ${prefix}setname [text]
 │⭔ ${prefix}setdesc [text]
