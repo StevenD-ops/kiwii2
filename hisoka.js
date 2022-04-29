@@ -725,9 +725,9 @@ Por favor @${m.mentionedJid[0].split`@`[0]} escribir aceptara/rechazar`
                 hisoka.sendMessage(m.chat, reactionMessage)
             }
             break
-          /*  case 'join': {
+           case 'join': {
                 if (!isCreator) throw mess.owner
-                if (!text) throw 'Masukkan Link Group!'
+                if (!text) throw 'Introduce el enlace del grupo!'
                 if (!isUrl(args[0]) && !args[0].includes('whatsapp.com')) throw 'Link Invalid!'
                 m.reply(mess.wait)
                 let result = args[0].split('https://chat.whatsapp.com/')[1]
@@ -738,7 +738,7 @@ Por favor @${m.mentionedJid[0].split`@`[0]} escribir aceptara/rechazar`
                 if (!isCreator) throw mess.owner
                 await hisoka.groupLeave(m.chat).then((res) => m.reply(jsonformat(res))).catch((err) => m.reply(jsonformat(err)))
             }
-            break
+            break/*
             case 'setexif': {
                if (!isCreator) throw mess.owner
                if (!text) throw `Example : ${prefix + command} packname|author`
@@ -2367,7 +2367,7 @@ Lihat list Pesan Dengan ${prefix}listmsg`)
                 delete this.anonymous[room.id]
                 if (command === 'leave') break
             }
-            case 'mulai': case 'start': {
+        /*    case 'mulai': case 'start': {
                 if (m.isGroup) return m.reply('Fitur Tidak Dapat Digunakan Untuk Group!')
                 this.anonymous = this.anonymous ? this.anonymous : {}
                 if (Object.values(this.anonymous).find(room => room.check(m.sender))) {
@@ -2407,7 +2407,7 @@ Lihat list Pesan Dengan ${prefix}listmsg`)
                     await hisoka.sendButtonText(m.chat, buttons, `\`\`\`Por favor espere, buscando un socio\`\`\``, hisoka.user.name, m)
                 }
                 break
-            }
+            }*/
             case 'next': case 'lanjut': {
                 if (m.isGroup) return m.reply('Fitur Tidak Dapat Digunakan Untuk Group!')
                 this.anonymous = this.anonymous ? this.anonymous : {}
