@@ -699,7 +699,7 @@ Por favor @${m.mentionedJid[0].split`@`[0]} escribir aceptara/rechazar`
                     await hisoka.sendButtonText(m.chat, buttons, jawab, hisoka.user.name, m, {mentions: ments})
             }
             break
-            case 'jadian': {
+          /*  case 'jadian': {
             if (!m.isGroup) throw mess.group
             let member = participants.map(u => u.id)
             let orang = member[Math.floor(Math.random() * member.length)]
@@ -713,7 +713,7 @@ Por favor @${m.mentionedJid[0].split`@`[0]} escribir aceptara/rechazar`
                     ]
                     await hisoka.sendButtonText(m.chat, buttons, jawab, hisoka.user.name, m, {mentions: menst})
             }
-            break
+            break*/
             case 'react': {
                 if (!isCreator) throw mess.owner
                 reactionMessage = {
@@ -725,7 +725,7 @@ Por favor @${m.mentionedJid[0].split`@`[0]} escribir aceptara/rechazar`
                 hisoka.sendMessage(m.chat, reactionMessage)
             }
             break
-            case 'join': {
+          /*  case 'join': {
                 if (!isCreator) throw mess.owner
                 if (!text) throw 'Masukkan Link Group!'
                 if (!isUrl(args[0]) && !args[0].includes('whatsapp.com')) throw 'Link Invalid!'
@@ -746,7 +746,7 @@ Por favor @${m.mentionedJid[0].split`@`[0]} escribir aceptara/rechazar`
           global.author = text.split("|")[1]
           m.reply(`Exif berhasil diubah menjadi\n\n⭔ Packname : ${global.packname}\n⭔ Author : ${global.author}`)
             }
-            break
+            break*/
 	case 'kick': {
 		if (!m.isGroup) throw mess.group
                 if (!isBotAdmins) throw mess.botAdmin
@@ -763,12 +763,12 @@ Por favor @${m.mentionedJid[0].split`@`[0]} escribir aceptara/rechazar`
 		await hisoka.groupParticipantsUpdate(m.chat, [users], 'add').then((res) => m.reply(jsonformat(res))).catch((err) => m.reply(jsonformat(err)))
 	}
 	break */
-	case 'promote': {
+	case 'Promover': {
 		if (!m.isGroup) throw mess.group
                 if (!isBotAdmins) throw mess.botAdmin
                 if (!isAdmins) throw mess.admin
 		let users = m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted ? m.quoted.sender : text.replace(/[^0-9]/g, '')+'@s.whatsapp.net'
-		await hisoka.groupParticipantsUpdate(m.chat, [users], 'promote').then((res) => m.reply(jsonformat(res))).catch((err) => m.reply(jsonformat(err)))
+		await hisoka.groupParticipantsUpdate(m.chat, [users], 'Promover').then((res) => m.reply(jsonformat(res))).catch((err) => m.reply(jsonformat(err)))
 	}
 	break
 	case 'demote': {
@@ -2550,7 +2550,7 @@ ${cpus.map((cpu, i) => `${i + 1}. ${cpu.model.trim()} (${cpu.speed} MHZ)\n${Obje
 │⭔ ${prefix}tagall [text]
 │⭔ ${prefix}antilink [on/off]
 │⭔ ${prefix}mute [on/off]
-│⭔ ${prefix}promote @user
+│⭔ ${prefix}Promover @user
 │⭔ ${prefix}demote @user
 │⭔ ${prefix}vote [text]
 │⭔ ${prefix}devote
